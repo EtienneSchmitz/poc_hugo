@@ -142,6 +142,7 @@ Alors les fichiers spécifiés ne peuvent pas être mis à jour car cela détrui
   <button id="submit_button">submit</button>
 </form>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
 
 <script>
 const struct = [
@@ -169,7 +170,13 @@ document.getElementById("submit_button").addEventListener("click", (event) => {
   }
  }
 
- console.log(total);
+// Default export is a4 paper, portrait, using millimeters for units
+// const doc = new window.jsPDF();
+
+  const doc = window.jspdf.jsPDF()
+
+  doc.text("Score :" + total + "/" + struct.length , 10, 10);
+  doc.save("score.pdf");
 })
 
 </script>
